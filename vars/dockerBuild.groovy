@@ -7,9 +7,7 @@ def call(String project, String hubUser) {
             usernameVariable: "USER",
             passwordVariable: "PASS"
     )]) {
-         sh('''docker login --username='$USER' --password='$PASS'
-         .
-         ''')
+        bat "docker login -u '$USER' -p '$PASS'"
     }
     bat "docker image push ${hubUser}/${project}:${ImageTag}"
     bat "docker image push ${hubUser}/${project}:latest"
